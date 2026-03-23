@@ -1,0 +1,561 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chao Pescao — Tienda de Mascotas · Cali</title>
+  <link href="misEstilos.css" rel="stylesheet" />
+  <link href="carrito.css" rel="stylesheet" />
+  <link href="responsive.css" rel="stylesheet"/>
+  <link href="lightbox.css" rel="stylesheet"/>
+</head>
+<body>
+
+<!-- CART OVERLAY -->
+<div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+
+<!-- CART PANEL -->
+<div class="cart-panel" id="cartPanel">
+  <div class="cart-header">
+    <h3 class="cart-title">🛒 Mi Carrito</h3>
+    <button class="cart-close" onclick="closeCart()">✕</button>
+  </div>
+  <div class="cart-shipping-bar" id="cartShippingBar"></div>
+  <div class="cart-items" id="cartItems">
+    <div class="cart-empty" id="cartEmpty">
+      <div class="cart-empty-icon">🛒</div>
+      <p>Tu carrito está vacío</p>
+      <span>¡Agrega productos para tus mascotas!</span>
+    </div>
+  </div>
+  <div class="cart-footer" id="cartFooter">
+    <div class="cart-total-row">
+      <span>Subtotal</span>
+      <span class="cart-total-price" id="cartTotal">$0</span>
+    </div>
+    <button class="cart-checkout-btn" onclick="alert('¡Pedido listo! Escríbenos por WhatsApp 💬')">Pedir por WhatsApp 💬</button>
+    <button class="cart-clear-btn" onclick="clearCart()">Vaciar carrito</button>
+  </div>
+</div>
+
+<!-- CART TOAST -->
+<div class="cart-toast" id="cartToast"></div>
+
+<!-- CART FAB -->
+<a href="#" class="cart-fab" onclick="event.preventDefault(); openCart()">
+  🛒<span class="cart-count" id="cartCountBadge">0</span>
+</a>
+
+<!-- ── NAVBAR ── -->
+<nav>
+  <a href="#" class="nav-logo-wrap">
+    <img src="Imagenes/logo_editado.png" alt="Logo" class="nav-logo-img">
+    <div class="nav-brand">
+      <span class="nav-brand-name">Chao Pescao</span>
+      <span class="nav-brand-sub">Tienda de mascotas</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#categorias">Categorías</a></li>
+    <li><a href="#productos">Productos</a></li>
+    <li><a href="#nosotros">Nosotros</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+    <li><a href="#" class="nav-cta" onclick="event.preventDefault(); openCart()">🛒 Carrito</a></li>
+  </ul>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="hero-bg-img"></div>
+  <div class="hero-overlay"></div>
+
+  <div class="hero-logo-float">
+    <div class="hero-logo-circle">
+      <img src="Imagenes/logo_editado.png" alt="Logo" />
+    </div>
+    <div class="hero-logo-caption">Chao Pescao</div>
+  </div>
+
+  <div class="hero-inner">
+    <div class="hero-chip">
+      <div class="chip-dot"></div>
+      Tienda de Mascotas · Cali, Colombia
+    </div>
+    <h1 class="hero-title">
+      Tu mascota<br />
+      merece lo <span class="ht-orange">mejor</span><br />
+      <span class="ht-yellow">del mundo</span> 🐾
+    </h1>
+    <p class="hero-desc">
+      Alimentos premium, juguetes, accesorios y mucho amor para perros,
+      gatos, peces y más. ¡Porque ellos son familia!
+    </p>
+    <div class="hero-btns">
+      <a href="#productos" class="btn btn-orange">🛍️ Ver productos</a>
+      <a href="#categorias" class="btn btn-outline-w">Explorar →</a>
+    </div>
+    <div class="hero-trust">
+      <div class="trust-item"><span class="trust-icon">⭐</span> 4.9 valoración</div>
+      <div class="trust-item"><span class="trust-icon">🚚</span> Domicilio en Cali</div>
+      <div class="trust-item"><span class="trust-icon">💬</span> Asesoría gratis</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TICKER ── -->
+<div class="ticker-wrap">
+  <div class="ticker-track">
+    <div class="ticker-item"><span class="t-dot"></span>Alimentos premium</div>
+    <div class="ticker-item"><span class="t-dot"></span>Perros</div>
+    <div class="ticker-item"><span class="t-dot"></span>Gatos</div>
+    <div class="ticker-item"><span class="t-dot"></span>Peces</div>
+    <div class="ticker-item"><span class="t-dot"></span>Domicilio en Cali</div>
+    <div class="ticker-item"><span class="t-dot"></span>+1200 familias felices</div>
+    <div class="ticker-item"><span class="t-dot"></span>Ofertas especiales</div>
+    <div class="ticker-item"><span class="t-dot"></span>Asesoría personalizada</div>
+    <div class="ticker-item"><span class="t-dot"></span>Alimentos premium</div>
+    <div class="ticker-item"><span class="t-dot"></span>Perros</div>
+    <div class="ticker-item"><span class="t-dot"></span>Gatos</div>
+    <div class="ticker-item"><span class="t-dot"></span>Peces</div>
+    <div class="ticker-item"><span class="t-dot"></span>Domicilio en Cali</div>
+    <div class="ticker-item"><span class="t-dot"></span>+1200 familias felices</div>
+    <div class="ticker-item"><span class="t-dot"></span>Ofertas especiales</div>
+    <div class="ticker-item"><span class="t-dot"></span>Asesoría personalizada</div>
+  </div>
+</div>
+
+<!-- ── STATS ── -->
+<div class="stats-bar">
+  <div class="stat-item">
+    <div class="stat-num sn-blue">+500</div>
+    <div class="stat-lbl">Productos</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num sn-orange">+1.2K</div>
+    <div class="stat-lbl">Familias felices</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num sn-yellow">4.9★</div>
+    <div class="stat-lbl">Valoración</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num sn-green">24h</div>
+    <div class="stat-lbl">Entrega en Cali</div>
+  </div>
+</div>
+
+<!-- ── CATEGORÍAS ── -->
+<section class="section cats-section rev" id="categorias">
+  <div class="cats-head rev">
+    <div class="s-eyebrow">Categorías</div>
+    <h2 class="s-title">¿Qué necesita hoy<br />tu peludito?</h2>
+    <p class="s-sub">
+      Productos especializados para cada tipo de mascota con la mejor
+      calidad.
+    </p>
+  </div>
+
+  <div class="cats-grid">
+    <div class="cat-card cat-card-big rev">
+      <div class="cat-tag">⭐ Más popular</div>
+      <img
+        src="Imagenes/Perro.jpg" alt="Perros" loading="lazy"/>
+      <div class="cat-overlay">
+        <div class="cat-name">🐶 Perros</div>
+        <div class="cat-count">198 productos disponibles</div>
+      </div>
+    </div>
+
+    <div class="cat-card rev">
+      <div class="cat-tag cat-tag-blue">🐱 Gatos</div>
+      <img
+        src="Imagenes/Gato.jfif" alt="Gatos" loading="lazy"/>
+      <div class="cat-overlay">
+        <div class="cat-name">🐱 Gatos</div>
+        <div class="cat-count">145 productos</div>
+      </div>
+    </div>
+
+    <div class="cat-card rev">
+      <div class="cat-tag cat-tag-green">🐟 Peces</div>
+      <img
+        src="Imagenes/Peces.jpg" alt="Peces" loading="lazy"/>
+      <div class="cat-overlay">
+        <div class="cat-name">🐟 Peces</div>
+        <div class="cat-count">87 productos</div>
+      </div>
+    </div>
+
+    <div class="cat-card rev">
+      <div class="cat-tag cat-tag-yellow">🐹 Hamsters</div>
+      <img
+        src="Imagenes/Hamsters.jfif" alt="Hamsters" loading="lazy"
+      />
+      <div class="cat-overlay">
+        <div class="cat-name">🐹 Hámsters</div>
+        <div class="cat-count">64 productos</div>
+      </div>
+    </div>
+
+    <div class="cat-card rev">
+      <div class="cat-tag">🎁 Accesorios</div>
+      <img src="Imagenes/Accesorios.jpg" alt="Accesorios" loading="lazy"/>
+      <div class="cat-overlay">
+        <div class="cat-name">🎁 Accesorios</div>
+        <div class="cat-count">120 productos</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PRODUCTOS ── -->
+<section class="section products-section" id="productos">
+  <div class="products-top rev">
+    <div>
+      <div class="s-eyebrow eyebrow-orange">Más pedidos</div>
+      <h2 class="s-title">Los favoritos de<br />nuestros clientes</h2>
+    </div>
+    <a href="#" class="btn btn-blue btn-small">Ver todo →</a>
+  </div>
+
+  <div class="products-grid">
+
+    <!-- Producto 1 - Agility Gold -->
+    <div class="p-card rev"
+         data-product-id="agility-gold-gatitos"
+         data-product-name="Agility Gold Gatitos 1.5Kg"
+         data-product-price="43000"
+         data-product-emoji="🐱">
+      <div class="p-topbar ptb-blue"></div>
+      <span class="p-badge pb-blue">⭐ Top venta</span>
+      <div class="p-img-contain">
+        <img
+          src="Imagenes/Agility_Gold_Gatitos_1_5Kg.png" alt="Agility Gold Gatitos"/>
+        <div class="p-fav">🤍</div>
+      </div>
+      <div class="p-body">
+        <div class="p-cat eyebrow-blue">🐱 Nutrición felina</div>
+        <div class="p-name">Agility Gold Gatitos 1.5Kg</div>
+        <div class="p-stars">★★★★★ <span class="p-reviews">(47 reseñas)</span></div>
+        <div class="p-footer">
+          <div><span class="p-price">$40.500</span></div>
+          <button class="add-btn">+</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Producto 2 - Alimento Perro -->
+    <div class="p-card rev"
+         data-product-id="alimento-perro-15kg"
+         data-product-name="Alimento-Premium-Perro-Adulto-15Kg"
+         data-product-price="85000"
+         data-product-emoji="🐶">
+      <div class="p-topbar ptb-orange"></div>
+      <span class="p-badge pb-orange">🔥 Popular</span>
+      <div class="p-img-area">
+        <img
+          src="Imagenes/Máximo_Desempeño_PerrosAdultos_Carne_15 Kg_5Kg_1.png" alt="Perro" loading="lazy"/>
+        <div class="p-fav">🤍</div>
+      </div>
+      <div class="p-body">
+        <div class="p-cat eyebrow-orange">🐶 Nutrición canina</div>
+        <div class="p-name">Alimento Max Perro Adulto 15Kg</div>
+        <div class="p-stars">★★★★★ <span class="p-reviews">(83 reseñas)</span></div>
+        <div class="p-footer">
+          <div>
+            <span class="p-price">$157.000</span><span class="p-old">$196.000</span>
+          </div>
+          <button class="add-btn">+</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Producto 3 - Kit Juguetes -->
+    <div class="p-card rev"
+         data-product-id="kit-juguetes-x5"
+         data-product-name="Kit Juguetes Interactivos x5"
+         data-product-price="45000"
+         data-product-emoji="🎾">
+      <div class="p-topbar ptb-green"></div>
+      <span class="p-badge pb-green">✨ Nuevo</span>
+      <div class="p-img-area">
+        <img
+          src="Imagenes/Pelota_morada.png" alt="Pelota_morada"
+          loading="lazy"
+        />
+        <div class="p-fav">🤍</div>
+      </div>
+      <div class="p-body">
+        <div class="p-cat">🎁 Juguetes</div>
+        <div class="p-name">Combo Pelotas Tipo Tenis Interactivas para Snacks X3</div>
+        <div class="p-stars">★★★★☆ <span class="p-reviews">(29 reseñas)</span></div>
+        <div class="p-footer">
+          <div><span class="p-price">$19.200</span></div>
+          <button class="add-btn">+</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Producto 4 - Shampoo -->
+    <div class="p-card rev"
+         data-product-id="Shampoo-Petys-235ml"
+         data-product-name="Shampoo-Petys-235ml"
+         data-product-price="22.500"
+         data-product-emoji="🛁">
+      <div class="p-topbar ptb-red"></div>
+      <span class="p-badge pb-red">💸 Oferta</span>
+      <div class="p-img-area">
+        <img
+          src="Imagenes/Shampoo_petys.png" alt="Perro" loading="lazy"/>
+        <div class="p-fav">🤍</div>
+      </div>
+      <div class="p-body">
+        <div class="p-cat">✨ Higiene</div>
+        <div class="p-name">Shampoo Hipoalergénico para Mascotas 500ml</div>
+        <div class="p-stars">★★★★★ <span class="p-reviews">(61 reseñas)</span></div>
+        <div class="p-footer">
+          <div>
+            <span class="p-price">$22.500</span><span class="p-old">$25.00</span>
+          </div>
+          <button class="add-btn">+</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── POR QUÉ ELEGIRNOS ── -->
+<section class="section why-section" id="nosotros">
+  <div class="why-wrap">
+    <div>
+      <div class="s-eyebrow rev eyebrow-blue">Por qué elegirnos</div>
+      <h2 class="s-title rev">Más que una tienda,<br />somos tu aliado 🤝</h2>
+      <p class="s-sub.rev">
+        En Cali cuidamos a tus mascotas como si fueran las nuestras.
+        Calidad, cariño y servicio de verdad.
+      </p>
+      <div class="why-features">
+        <div class="feat f-blue rev">
+          <div class="feat-ico fi-blue">🚚</div>
+          <div class="feat-body">
+            <h4>Entrega rápida en Cali</h4>
+            <p>Pedís por WhatsApp o Instagram y llega a tu puerta el mismo día o en menos de 24 horas.</p>
+          </div>
+        </div>
+        <div class="feat f-orange rev">
+          <div class="feat-ico fi-orange">🏆</div>
+          <div class="feat-body">
+            <h4>Productos de calidad garantizada</h4>
+            <p>Solo trabajamos con las mejores marcas para el bienestar real de tu mascota.</p>
+          </div>
+        </div>
+        <div class="feat f-green rev">
+          <div class="feat-ico fi-green">💬</div>
+          <div class="feat-body">
+            <h4>Asesoría personalizada</h4>
+            <p>Te ayudamos a elegir según la edad, raza y necesidades de tu peludito. ¡Gratis!</p>
+          </div>
+        </div>
+        <div class="feat f-red rev">
+          <div class="feat-ico fi-red">💳</div>
+          <div class="feat-body">
+            <h4>Múltiples formas de pago</h4>
+            <p>Efectivo, Nequi, Daviplata, transferencia. ¡Sin complicaciones!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="why-visual rev">
+      <div class="why-photo">
+        <img
+          src="Imagenes/foto-portada-2.jfif" alt="Mascotas felices" loading="lazy"/>
+        <div class="why-photo-overlay"></div>
+        <div class="why-logo-center">
+          <div class="why-logo-ring">
+            <img src="Imagenes/logo_editado.png" alt="logo" />
+          </div>
+          <div class="why-logo-name">chao pescao</div>
+          <div class="why-logo-tagline">Tienda de mascotas · Cali</div>
+        </div>
+        <div class="why-badges">
+          <div class="why-badge">
+            <div class="wb-dot"></div>
+            🎁 Envío GRATIS +$100k
+          </div>
+          <div class="why-badge">
+            <div class="wb-dot"></div>
+            ⭐ #1 en Cali
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── GALERÍA ── -->
+<section class="section gallery-section">
+  <div class="gallery-head rev">
+    <div class="s-eyebrow">Galería</div>
+    <h2 class="s-title s-title-w">Mascotas que nos<br />llenan de amor 💛</h2>
+  </div>
+  <div class="gallery-strip rev">
+    <div class="gallery-photo">
+      <img src="Imagenes/Perritos.jpg" alt="Perro" loading="lazy"/>
+      <div class="gallery-photo-lbl">🐶 Perros</div>
+    </div>
+    <div class="gallery-photo">
+      <img src="Imagenes/Gaticos.jpg" alt="Gato" loading="lazy"/>
+      <div class="gallery-photo-lbl">🐱 Gatos</div>
+    </div>
+    <div class="gallery-photo">
+      <img src="Imagenes/Pez.webp" alt="Peces" loading="lazy"/>
+      <div class="gallery-photo-lbl">🐟 Peces</div>
+    </div>
+    <div class="gallery-photo">
+      <img src="Imagenes/Cachorritos_perros.jpg" alt="Cachorros" loading="lazy" />
+      <div class="gallery-photo-lbl">🐕 Cachorros</div>
+    </div>
+    <div class="gallery-photo">
+      <img src="Imagenes/Gatitos_pequeñitos.jpg" alt="Gatitos" loading="lazy" />
+      <div class="gallery-photo-lbl">🐈 Gatitos</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TESTIMONIOS ── -->
+<section class="section test-section" id="testimonios">
+  <div class="test-head rev">
+    <div class="s-eyebrow eyebrow-blue">Testimonios</div>
+    <h2 class="s-title">Caleños que confían<br />en nosotros 💛</h2>
+    <p class="s-sub">Más de 1.200 familias nos eligen cada día para el cuidado de sus mascotas.</p>
+  </div>
+  <div class="test-grid">
+    <div class="t-card rev">
+      <div class="t-bar tb-blue"></div>
+      <div class="t-stars">★★★★★</div>
+      <p class="t-text">¡Tremenda tienda! Súper rápidos y el producto excelente. ¡Los mejores de Cali!</p>
+      <div class="t-author">
+        <div class="t-avatar tav-b">👩</div>
+        <div>
+          <div class="t-name">Valentina</div>
+          <div class="t-pet">🐶 Mamá de Toby - Cali</div>
+        </div>
+      </div>
+    </div>
+    <div class="t-card rev">
+      <div class="t-bar tb-orange"></div>
+      <div class="t-stars">★★★★★</div>
+      <p class="t-text">Me ayudaron a elegir el alimento para mis gatitos. Compré el Agility Gold y mis gatos lo adoran. ¡100% recomendados!</p>
+      <div class="t-author">
+        <div class="t-avatar tav-o">👨</div>
+        <div>
+          <div class="t-name">Andrés</div>
+          <div class="t-pet">🐱 Papá de Michi y Luna - Cali</div>
+        </div>
+      </div>
+    </div>
+    <div class="t-card rev">
+      <div class="t-bar tb-green"></div>
+      <div class="t-stars">★★★★★</div>
+      <p class="t-text">Llevo más de un año comprando acá. Siempre tienen todo para mi acuario y me asesoran muy bien. ¡Lo mejor para los que amamos a nuestras mascotas!</p>
+      <div class="t-author">
+        <div class="t-avatar tav-g">👩</div>
+        <div>
+          <div class="t-name">Mariana</div>
+          <div class="t-pet">🐟 Amante de los peces - Cali</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA FINAL ── -->
+<section class="cta-section" id="contacto">
+  <div class="cta-bg-stripe"></div>
+  <div class="cta-accent-bar"></div>
+  <div class="cta-inner">
+    <div class="cta-logo-wrap rev">
+      <div class="cta-logo-ring">
+        <img src="Imagenes/logo_editado.png" alt="Chao Pescao"/>
+      </div>
+    </div>
+    <h2 class="cta-title rev">Tu mascota merece<br />lo mejor de Cali ❤️</h2>
+    <p class="cta-sub rev">
+      Pedidos por WhatsApp e Instagram · Entrega rápida<br />¡Llévame mi premio! 🎁
+    </p>
+    
+    <div class="cta-social-row rev">
+      <a href="https://instagram.com/tiendamascotaschaopescao" target="_blank" rel="noopener noreferrer" class="s-btn">
+        <span class="s-btn-icon">📸</span>@tiendamascotaschaopescao
+      </a>
+      <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="s-btn">
+        <span class="s-btn-icon">👍</span>Tienda de Mascotas Chao Pescao
+      </a>
+      <a href="https://wa.me/57" target="_blank" rel="noopener noreferrer" class="s-btn">
+        <span class="s-btn-icon">💬</span>Pedir por WhatsApp
+      </a>
+    </div>
+    <a href="#productos" class="btn-yellow rev">🛍️ Ver productos ahora</a>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-logo-wrap">
+        <img src="Imagenes/logo_editado.png" alt="Chao Pescao" class="footer-logo-img" />
+        <div class="footer-logo-text">
+          <span class="footer-logo-name">Chao Pescao</span>
+          <span class="footer-logo-sub">Tienda de mascotas</span>
+        </div>
+      </div>
+      <p>Tu tienda de confianza en Cali. Porque cada mascota merece lo mejor y cada dueño merece tranquilidad.</p>
+      <div class="footer-socials">
+        <a href="#" class="footer-soc">📸</a>
+        <a href="#" class="footer-soc">👍</a>
+        <a href="#" class="footer-soc">💬</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Productos</h4>
+      <ul>
+        <li><a href="#">Alimentos</a></li>
+        <li><a href="#">Juguetes</a></li>
+        <li><a href="#">Accesorios</a></li>
+        <li><a href="#">Higiene</a></li>
+        <li><a href="#">Acuarios</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Mascotas</h4>
+      <ul>
+        <li><a href="#">Perros</a></li>
+        <li><a href="#">Gatos</a></li>
+        <li><a href="#">Peces</a></li>
+        <li><a href="#">Pequeños</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contacto · Cali</h4>
+      <ul>
+        <li><a href="#">📍 Cali, Valle del Cauca</a></li>
+        <li><a href="#">💬 WhatsApp</a></li>
+        <li><a href="#">📸 Instagram</a></li>
+        <li><a href="#">👍 Facebook</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Chao Pescao | Tienda de Mascotas. Cali, Colombia.</p>
+    <p>Hecho con ❤️ para los amantes de los animales</p>
+  </div>
+</footer>
+
+<script src="misScripts.js"></script>
+<script src="lightbox.js"></script>
+<script src="hamburger.js"></script>
+</body>
+</html>
